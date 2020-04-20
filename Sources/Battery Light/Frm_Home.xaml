@@ -1,0 +1,100 @@
+﻿<phone:PhoneApplicationPage x:Class="Batterie.Frm_Home"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+		xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+		xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+		mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+		FontFamily="{StaticResource PhoneFontFamilyNormal}" FontSize="{StaticResource PhoneFontSizeNormal}" Foreground="{StaticResource PhoneForegroundBrush}"
+		SupportedOrientations="PortraitOrLandscape" Orientation="Portrait" shell:SystemTray.IsVisible="True" Loaded="OnLoaded">
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="auto" />
+		</Grid.RowDefinitions>
+		<controls:Pivot Grid.Row="0" Title="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}">
+			<controls:PivotItem Header="{Binding Path=LocalizedResources.FirstPivotItemTitle, Source={StaticResource LocalizedStrings}}">
+				<Grid Grid.Row="1" Margin="12,0,12,0">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*" />
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="30" />
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+					</Grid.RowDefinitions>
+					<Grid Grid.Row="1" HorizontalAlignment="Center">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="auto" />
+							<ColumnDefinition Width="auto" />
+						</Grid.ColumnDefinitions>
+						<Border Grid.Column="0" BorderBrush="{StaticResource PhoneForegroundBrush}" BorderThickness="12" CornerRadius="10" Width="300" Height="160">
+							<Border x:Name="BattIndicator" Margin="4" CornerRadius="2.5" Background="{StaticResource PhoneAccentBrush}" HorizontalAlignment="Left" Width="268" />
+						</Border>
+						<Border Grid.Column="1" Background="{StaticResource PhoneForegroundBrush}" CornerRadius="0,6,6,0" Width="15" Height="70" Margin="-1,0,0,0" />
+					</Grid>
+					<toolkit:WrapPanel Grid.Row="3" Orientation="Horizontal">
+						<Grid Width="300" Margin="0,0,0,4">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="auto" />
+								<RowDefinition Height="auto" />
+							</Grid.RowDefinitions>
+							<TextBlock Grid.Row="0" Text="{Binding Path=LocalizedResources.LabelAlimentationSource, Source={StaticResource LocalizedStrings}}" />
+							<TextBlock Grid.Row="1" x:Name="AlimentationSource" FontWeight="Bold" Foreground="{StaticResource PhoneAccentBrush}" Text="Externe" />
+						</Grid>
+						<Grid Width="300" Margin="0,0,0,4">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="auto" />
+								<RowDefinition Height="auto" />
+							</Grid.RowDefinitions>
+							<TextBlock Grid.Row="0" Text="{Binding Path=LocalizedResources.LabelBattLevel, Source={StaticResource LocalizedStrings}}" />
+							<TextBlock Grid.Row="1" x:Name="BattLevel" FontWeight="Bold" Foreground="{StaticResource PhoneAccentBrush}" Text="100%" />
+						</Grid>
+						<Grid Width="600" Margin="0,0,0,4" x:Name="RemainingBlock" Visibility="Collapsed">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="auto" />
+								<RowDefinition Height="auto" />
+							</Grid.RowDefinitions>
+							<TextBlock Grid.Row="0" Text="{Binding Path=LocalizedResources.LabelBattRemaining, Source={StaticResource LocalizedStrings}}" />
+							<TextBlock Grid.Row="1" x:Name="BattRemaining" FontWeight="Bold" Foreground="{StaticResource PhoneAccentBrush}" Text="1 heure 25 minutes" />
+						</Grid>
+					</toolkit:WrapPanel>
+				</Grid>
+			</controls:PivotItem>
+			<controls:PivotItem Header="{Binding Path=LocalizedResources.SecondPivotItemTitle, Source={StaticResource LocalizedStrings}}">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="10" />
+						<RowDefinition Height="auto" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="auto" />
+						<ColumnDefinition Width="auto" />
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+					<TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path=LocalizedResources.LabelVersion, Source={StaticResource LocalizedStrings}}" />
+					<TextBlock Grid.Row="0" Grid.Column="1" Text=":" Margin="5,0" />
+					<TextBlock Grid.Row="0" Grid.Column="2" x:Name="VersionLabel" FontWeight="Bold" Foreground="{StaticResource PhoneAccentBrush}" Text="1.0.0.0" />
+					<TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Path=LocalizedResources.LabelDetails, Source={StaticResource LocalizedStrings}}" />
+					<TextBlock Grid.Row="2" Grid.Column="1" Text=":" Margin="5,0" />
+					<RichTextBox Grid.Row="2" Grid.Column="2" FontWeight="Bold" Foreground="{StaticResource PhoneAccentBrush}" Margin="-12,0,0,0" TextWrapping="Wrap" HorizontalAlignment="Stretch">
+						<Paragraph>
+							<Run Text="{Binding Path=LocalizedResources.DetailsFirstLine, Source={StaticResource LocalizedStrings}}"/>
+							<LineBreak/>
+							<LineBreak/>
+							<Run Text="{Binding Path=LocalizedResources.DetailsSecondLine, Source={StaticResource LocalizedStrings}}"/>
+						</Paragraph>
+					</RichTextBox>
+				</Grid>
+			</controls:PivotItem>
+		</controls:Pivot>
+		<Rectangle Grid.Row="1" Height="{Binding Path=ApplicationBarHeight, Source={StaticResource PhoneSizeUtils}}" />
+	</Grid>
+	<phone:PhoneApplicationPage.ApplicationBar>
+		<shell:ApplicationBar IsVisible="false" BackgroundColor="Black" Opacity=".999" />
+	</phone:PhoneApplicationPage.ApplicationBar>
+</phone:PhoneApplicationPage>

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
+  <Identity Name="00000Anonymous.BatteryLight" Publisher="CN=00000000-0000-0000-0000-000000000000" Version="1.0.0.4" />
+  <mp:PhoneIdentity PhoneProductId="00000000-0000-0000-0000-000000000000" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Properties>
+    <DisplayName>Batterie</DisplayName>
+    <PublisherDisplayName>Nicolas Dagnas</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.3.1</OSMinVersion>
+    <OSMaxVersionTested>6.3.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="x6efb25aeyb1efy4f13yb72by1ec4826cf471x" Executable="AGHost.exe" EntryPoint="Frm_Home.xaml">
+      <m3:VisualElements DisplayName="Battery" Square44x44Logo="Assets\ApplicationIcon.png" Square150x150Logo="Assets\SquareImageTile.png" Description="Batterie" ForegroundText="light" BackgroundColor="transparent" ToastCapable="true">
+		  <m3:DefaultTile ShortName="Battery" DefaultSize="square150x150Logo" Square71x71Logo="Assets\SquareIconTile.png" Wide310x150Logo="Assets\WideImageTile.png">
+			  <m3:ShowNameOnTiles>
+				  <m3:ShowOn Tile="square150x150Logo" />
+				  <m3:ShowOn Tile="wide310x150Logo" />
+			  </m3:ShowNameOnTiles>
+		  </m3:DefaultTile>
+		  <m3:LockScreen Notification="badgeAndTileText" BadgeLogo="Assets\LockscreenIcon.png"/>
+	  </m3:VisualElements>
+      <Extensions>
+        <Extension Category="windows.backgroundTasks" EntryPoint="AgHost.BackgroundTask">
+          <BackgroundTasks>
+            <Task Type="systemEvent" />
+          </BackgroundTasks>
+        </Extension>
+        <Extension Category="windows.backgroundTasks" EntryPoint="Scheduler.ScheduledAgent">
+          <BackgroundTasks>
+            <Task Type="systemEvent" />
+            <Task Type="timer" />
+          </BackgroundTasks>
+        </Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+  <Extensions>
+    <Extension Category="windows.activatableClass.inProcessServer">
+      <InProcessServer>
+        <Path>AgHostSvcs.dll</Path>
+        <ActivatableClass ActivatableClassId="AgHost.BackgroundTask" ThreadingModel="both" />
+      </InProcessServer>
+    </Extension>
+  </Extensions>
+</Package>

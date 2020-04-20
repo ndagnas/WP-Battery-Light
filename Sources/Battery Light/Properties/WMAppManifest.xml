@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2014/deployment" AppPlatformVersion="8.1">
+  <DefaultLanguage xmlns="" code="en" />
+  <Languages xmlns="">
+    <Language code="en" />
+    <Language code="fr" />
+    <Language code="de" />
+    <Language code="es" />
+    <Language code="it" />
+    <Language code="pt" />
+  </Languages>
+  <App xmlns="" ProductID="{00000000-0000-0000-0000-000000000000}" Title="Battery Light" RuntimeType="Silverlight" Version="1.0.0.4" Genre="apps.normal" Author="Nicolas Dagnas" Description="Indicateur du niveau de la batterie" Publisher="Nicolas Dagnas" PublisherID="{00000000-0000-0000-0000-000000000000}" NotificationService="WNS">
+    <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
+    <Capabilities>
+      <Capability Name="ID_CAP_IDENTITY_DEVICE" />
+      <Capability Name="ID_CAP_IDENTITY_USER" />
+    </Capabilities>
+    <Tasks>
+      <DefaultTask Name="_default" NavigationPage="Frm_Home.xaml" ActivationPolicy="Replace" />
+	</Tasks>
+    <Tokens>
+      <PrimaryToken TokenID="BatterieToken" TaskName="_default">
+        <TemplateIconic>
+          <SmallImageURI IsRelative="true" IsResource="false">Assets\SquareIconL6.png</SmallImageURI>
+          <Count>0</Count>
+          <IconImageURI IsRelative="true" IsResource="false">Assets\SquareImageL6.png</IconImageURI>
+          <Title>Battery</Title>
+          <Message>
+          </Message>
+          <BackgroundColor>
+          </BackgroundColor>
+          <HasLarge>True</HasLarge>
+          <LargeContent1>
+          </LargeContent1>
+          <LargeContent2>
+          </LargeContent2>
+          <LargeContent3>
+          </LargeContent3>
+        </TemplateIconic>
+      </PrimaryToken>
+    </Tokens>
+    <ScreenResolutions>
+      <ScreenResolution Name="ID_RESOLUTION_WVGA" />
+      <ScreenResolution Name="ID_RESOLUTION_WXGA" />
+      <ScreenResolution Name="ID_RESOLUTION_HD720P" />
+    </ScreenResolutions>
+  </App>
+</Deployment>
